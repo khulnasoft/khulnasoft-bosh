@@ -1,0 +1,77 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+JOB_NAME=khulnasoft-agent
+JOB_DIR=/var/vcap/jobs/$JOB_NAME
+PACKAGE_DIR=/var/vcap/packages/khulnasoft-agent
+LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+DATA_DIR=/var/vcap/data/khulnasoft-agent
+TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+INSTALL_DIR=/var/ossec
+
+mkdir -p ${INSTALL_DIR}/etc
+if [ ! -d "/var/vcap/data/khulnasoft-agent/etc/" ]; then
+  mkdir -p /var/vcap/data/khulnasoft-agent/etc/
+  echo "Directory /var/vcap/data/khulnasoft-agent/etc/"
+fi
+
+if [ ! -d "/var/vcap/packages/khulnasoft-agent/etc/" ]; then
+  mkdir -p /var/vcap/packages/khulnasoft-agent/etc/
+  echo "Directory /var/vcap/packages/khulnasoft-agent/etc/"
+fi
+
+if [ ! -d "/var/vcap/packages/khulnasoft-agent/bin" ]; then
+  mkdir -p /var/vcap/packages/khulnasoft-agent/bin
+  echo "Directory /var/vcap/packages/khulnasoft-agent/bin"
+fi
+
+rm -f /etc/ossec-init.conf
+
+cp ${JOB_DIR}/config/preloaded-vars.conf ${PACKAGE_DIR}/source_code/etc/preloaded-vars.conf
+cd ${PACKAGE_DIR}/source_code
+./install.sh
+
+if [ "<%= p("khulnasoft_multinode") %>" = true ]; then
+  cp ${JOB_DIR}/config/ossec_cluster.conf ${INSTALL_DIR}/etc/ossec.conf
+elif [ "<%= p("khulnasoft_multinode") %>" = false ]; then
+  cp ${JOB_DIR}/config/ossec.conf ${INSTALL_DIR}/etc/
+fi
+
+cp ${JOB_DIR}/config/local_internal_options.conf ${INSTALL_DIR}/etc/
+
+if [ ! -L ${LOG_DIR}/khulnasoft_logs ]; then
+    ln -s ${INSTALL_DIR}/logs/ ${LOG_DIR}/khulnasoft_logs
+fi
+
+if [ ! -s ${DATA_DIR}/etc/client.keys ]; then
+    SSL_CREDS=""
+    if  [[ "<%= p("khulnasoft_agent_cert") %>" != "" ]] && \
+      [[ "<%= p("khulnasoft_agent_key") %>" != "" ]] ; then
+      echo "<%= p("khulnasoft_agent_cert") %>" > ${INSTALL_DIR}/etc/sslagent.cert
+      echo "<%= p("khulnasoft_agent_key") %>" > ${INSTALL_DIR}/etc/sslagent.key
+      chown root:root ${INSTALL_DIR}/etc/sslagent.cert ${INSTALL_DIR}/etc/sslagent.key
+      chmod 400 ${INSTALL_DIR}/etc/sslagent.cert ${INSTALL_DIR}/etc/sslagent.key
+      echo "$TIMESTAMP : INFO : Agent cert and key imported succesfully" >> ${LOG_DIR}/setup.log
+      SSL_CREDS="-x ${INSTALL_DIR}/etc/sslagent.cert -k ${INSTALL_DIR}/etc/sslagent.key"
+    fi
+    if ${INSTALL_DIR}/bin/agent-auth -m "<%= p("khulnasoft_server_registration_address") %>" -A "<%= p("khulnasoft_agents_prefix") %>"`hostname` $SSL_CREDS
+    then
+      echo "$TIMESTAMP : INFO : Registration success" >> ${LOG_DIR}/setup.log
+    else
+      cp ${JOB_DIR}/config/client.keys.sample ${INSTALL_DIR}/etc/client.keys
+      echo "$TIMESTAMP : ERROR : Registration failure" >> ${LOG_DIR}/setup.log
+    fi
+
+else
+    cp ${DATA_DIR}/etc/client.keys ${INSTALL_DIR}/etc/
+    echo "$TIMESTAMP : INFO : Agent was already registered" >> ${LOG_DIR}/setup.log
+fi
+
+${JOB_DIR}/bin/khulnasoft_agent_ctl start
+
+# Start registration daemons
+$JOB_DIR/bin/registration.sh &
+
+exit 0

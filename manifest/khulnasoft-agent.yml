@@ -1,0 +1,23 @@
+---
+  releases:
+  - name: "khulnasoft"
+    version: 4.4.0
+  
+  addons:
+  - name: khulnasoft
+    release: 4.4.0
+    jobs:
+    - name: khulnasoft-agent
+      release: khulnasoft
+      properties:
+          khulnasoft_server_address: 172.31.32.4 
+          khulnasoft_server_registration_address: 172.31.32.4
+          khulnasoft_server_worker_address: 172.31.32.4
+          khulnasoft_server_protocol: "tcp"
+          khulnasoft_agents_prefix: "bosh-"
+          khulnasoft_agent_profile: "generic"
+          khulnasoft_multinode: false
+    exclude:
+      deployments: 
+      - khulnasoft-manager
+      - khulnasoft-manager-worker

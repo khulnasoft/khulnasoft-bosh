@@ -1,0 +1,6 @@
+[submodule "src/khulnasoft-ruleset"]
+        path = src/khulnasoft-ruleset
+        url = https://github.com/khulnasoft/khulnasoft-ruleset
+[submodule "khulnasoft-ruleset"]
+        path = khulnasoft-ruleset
+        url = https://github.com/khulnasoft/khulnasoft-ruleset/

@@ -1,0 +1,30 @@
+check process khulnasoft-execd
+  matching "khulnasoft-execd"
+  start program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl stop"
+  group vcap
+
+check process khulnasoft-agentd
+  matching "khulnasoft-agentd"
+  start program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl stop"
+  group vcap
+
+check process khulnasoft-logcollector
+  matching "khulnasoft-logcollector"
+  start program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl stop"
+  group vcap
+
+
+check process khulnasoft-syscheckd
+  matching "khulnasoft-syscheckd"
+  start program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl stop"
+  group vcap
+  
+check process khulnasoft-modulesd
+  matching "khulnasoft-modulesd"
+  start program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-agent/bin/khulnasoft_agent_ctl stop"
+  group vcap  

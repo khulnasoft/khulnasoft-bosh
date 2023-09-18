@@ -1,0 +1,45 @@
+---
+name: khulnasoft-agent
+
+packages:
+- khulnasoft-agent
+
+templates:
+  bin/pre-start.erb: bin/pre-start
+  bin/post-start.erb: bin/post-start
+  bin/registration.erb: bin/registration.sh
+  bin/khulnasoft_agent_ctl: bin/khulnasoft_agent_ctl
+  config/ossec.conf.erb: config/ossec.conf
+  config/ossec_cluster.conf.erb: config/ossec_cluster.conf
+  config/preloaded-vars.conf.erb: config/preloaded-vars.conf
+  config/local_internal_options.conf: config/local_internal_options.conf
+  config/client.keys.sample: config/client.keys.sample
+  helpers/pid_utils.sh: helpers/pid_utils.sh
+
+properties:
+  khulnasoft_server_address:
+    description: "Wazuh Manager IP or DNS"
+  khulnasoft_server_worker_address:
+    description: "Wazuh Manager Worker IP or DNS"    
+  khulnasoft_server_registration_address:
+    description: "Wazuh Manager registration service (authd) IP or DNS"
+  khulnasoft_agents_prefix:
+    description: "Agents name prefix. {PREFIX}instance-id. Ex: bosh-d3b79f26-1c11-411c-b02a-8a19a66c4ab7"
+    default: "bosh-"
+  khulnasoft_agent_profile:
+    description: "Agent profile. Ex: generic,ubuntu,ubuntu16,zone1"
+    default: "generic"
+  khulnasoft_server_protocol:
+    description: "Agent communication with Manager protocol. Values: udp,tcp"
+    default: "tcp"
+  ksc_server_node:
+    description: "Set IP address of Kaspersky Security Center. Values: IP.Address"
+    default: "10.0.0.83"
+  khulnasoft_agent_cert:
+    description: "Agent's certificate path. Ex: /var/vcap/sslagent.cert"
+    default: ""
+  khulnasoft_agent_key:
+    description: "Agent's key path. Ex: /var/vcap/sslagent.key"
+    default: ""
+  khulnasoft_multinode:
+    description: "Specify wether is a Wazuh Multi Node deployment o not"

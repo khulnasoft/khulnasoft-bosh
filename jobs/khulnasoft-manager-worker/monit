@@ -1,0 +1,97 @@
+check process khulnasoft-analysisd
+  matching "khulnasoft-analysisd"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+check process khulnasoft-execd
+  matching "khulnasoft-execd"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+check process khulnasoft-remoted
+  matching "khulnasoft-remoted"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+
+check process khulnasoft-logcollector
+  matching "khulnasoft-logcollector"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+
+check process khulnasoft-syscheckd
+ matching "khulnasoft-syscheckd"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+check process khulnasoft-monitord
+  matching "khulnasoft-monitord"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+check process khulnasoft-modulesd
+  matching "khulnasoft-modulesd"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+check process khulnasoft-authd
+  matching "khulnasoft-authd"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+  
+check process khulnasoft-db
+  matching "khulnasoft-db"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap
+
+#check process khulnasoft-dbd
+#  matching "khulnasoft-dbd"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+#check process khulnasoft-clusterd
+#  matching "khulnasoft-clusterd"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+#check process khulnasoft-maild
+#  matching "khulnasoft-maild"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+#check process khulnasoft-agentlessd
+#  matching "khulnasoft-agentlessd"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+#check process khulnasoft-integratord
+#  matching "khulnasoft-integratord"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+#check process khulnasoft-csyslogd
+#  matching "khulnasoft-csyslogd"
+#  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+#  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+#  group vcap
+
+check process khulnasoft-apid
+  matching "khulnasoft-apid"
+  start program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl start"
+  stop program "/var/vcap/jobs/khulnasoft-manager-worker/bin/khulnasoft_server_ctl stop"
+  group vcap

@@ -1,0 +1,6 @@
+---
+name: khulnasoft-manager
+dependencies: []
+
+files:
+- khulnasoft/khulnasoft-manager.tar.gz

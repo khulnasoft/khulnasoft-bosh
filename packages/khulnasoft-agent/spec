@@ -1,0 +1,6 @@
+---
+name: khulnasoft-agent
+dependencies: []
+
+files:
+- khulnasoft/khulnasoft-agent.tar.gz
