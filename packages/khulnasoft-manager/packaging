@@ -9,9 +9,9 @@ set -x
 CPUS=$(grep -c ^processor /proc/cpuinfo)
 export HOME=/var/vcap
 
-export WAZUH_FOLDER="khulnasoft-manager"
+export KHULNASOFT_FOLDER="khulnasoft-manager"
 
 echo "Untar into ${BOSH_INSTALL_TARGET}/source_code"
 mkdir -p ${BOSH_INSTALL_TARGET}/source_code
 
-tar xzvf khulnasoft/${WAZUH_FOLDER}.tar.gz -C ${BOSH_INSTALL_TARGET}/source_code
+tar xzvf khulnasoft/${KHULNASOFT_FOLDER}.tar.gz -C ${BOSH_INSTALL_TARGET}/source_code

@@ -5,12 +5,12 @@ set -u # report the usage of uninitialized variables
 JOB_NAME=khulnasoft-agent
 JOB_DIR=/var/vcap/jobs/$JOB_NAME
 LOG_DIR=/var/vcap/sys/log/$JOB_NAME
-WAZUH_LOG_DIR=/var/ossec/logs
+KHULNASOFT_LOG_DIR=/var/ossec/logs
 TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 
 # Checking connection
 sleep 45
-if grep "Connected to the server" ${WAZUH_LOG_DIR}/ossec.log > /dev/null; then
+if grep "Connected to the server" ${KHULNASOFT_LOG_DIR}/ossec.log > /dev/null; then
   echo "$TIMESTAMP : INFO : Agent successfully installed, registered, and connected to the manager."  >> ${LOG_DIR}/setup.log
 else
   echo "$TIMESTAMP : ERROR : Agent is not connected to the manager. Retrying in 120 seconds."  >> ${LOG_DIR}/setup.log

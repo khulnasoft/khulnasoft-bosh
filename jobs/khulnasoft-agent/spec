@@ -18,11 +18,11 @@ templates:
 
 properties:
   khulnasoft_server_address:
-    description: "Wazuh Manager IP or DNS"
+    description: "Khulnasoft Manager IP or DNS"
   khulnasoft_server_worker_address:
-    description: "Wazuh Manager Worker IP or DNS"    
+    description: "Khulnasoft Manager Worker IP or DNS"    
   khulnasoft_server_registration_address:
-    description: "Wazuh Manager registration service (authd) IP or DNS"
+    description: "Khulnasoft Manager registration service (authd) IP or DNS"
   khulnasoft_agents_prefix:
     description: "Agents name prefix. {PREFIX}instance-id. Ex: bosh-d3b79f26-1c11-411c-b02a-8a19a66c4ab7"
     default: "bosh-"
@@ -42,4 +42,4 @@ properties:
     description: "Agent's key path. Ex: /var/vcap/sslagent.key"
     default: ""
   khulnasoft_multinode:
-    description: "Specify wether is a Wazuh Multi Node deployment o not"
+    description: "Specify wether is a Khulnasoft Multi Node deployment o not"

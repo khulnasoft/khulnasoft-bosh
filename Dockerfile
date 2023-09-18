@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get install git -y
 RUN apt-get install python gcc g++ make libc6-dev curl policycoreutils automake autoconf libtool libssl-dev -y
 WORKDIR /root
-RUN curl -OL https://packages.khulnasoft.com/utils/cmake/cmake-3.18.3.tar.gz && tar -zxf cmake-3.18.3.tar.gz 
+RUN curl -OL https://packages.wazuh.com/utils/cmake/cmake-3.18.3.tar.gz && tar -zxf cmake-3.18.3.tar.gz 
 WORKDIR /root/cmake-3.18.3 
 RUN ./bootstrap --no-system-curl
 RUN make -j$(nproc) && make install

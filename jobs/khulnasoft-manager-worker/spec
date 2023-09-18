@@ -20,7 +20,7 @@ properties:
   sslmanager_cert:
     description: SSL manager certificate
   cluster_key:
-    description: "Set the Wazuh cluster key # https://documentation.khulnasoft.com/current/user-manual/reference/ossec-conf/cluster.html#cluster-key"
+    description: "Set the Khulnasoft cluster key # https://documentation.khulnasoft.com/current/user-manual/reference/ossec-conf/cluster.html#cluster-key"
     default: "d683ecbf1f357cba8c86594dd0094a0c"
   khulnasoft_master_address:
-    description: "IP address or domain name for Wazuh Manager Master node"
+    description: "IP address or domain name for Khulnasoft Manager Master node"
